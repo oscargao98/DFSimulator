@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/oscargao/Desktop/p2_6140_new/device.cpp
+device.h
+/Users/oscargao/Desktop/p2_6140_new/device.h
+
+/Users/oscargao/Desktop/p2_6140_new/device.h
+vector
+-
+fstream
+-
+sstream
+-
+iostream
+-
+stdexcept
+-
+algorithm
+-
+iterator
+-
+
+/Users/oscargao/Desktop/p2_6140_new/main.cpp
+iostream
+-
+string
+-
+vector
+-
+unordered_map
+-
+algorithm
+-
+device.h
+/Users/oscargao/Desktop/p2_6140_new/device.h
+
