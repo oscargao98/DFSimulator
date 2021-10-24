@@ -100,7 +100,7 @@ vector<string> device:: deductive(const vector<string>& input1, const vector<str
         }
         else
         {
-            throw invalid_argument("ERROR List Processing! OR");
+            throw invalid_argument("ERROR List Processing! AND");
         }
     }
     else if (this->type == "OR" | this->type == "NOR")

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/oscargao/Desktop/p2_6140_new/device.cpp
-device.h
-/Users/oscargao/Desktop/p2_6140_new/device.h
-
 /Users/oscargao/Desktop/p2_6140_new/device.h
 vector
 -
@@ -37,6 +33,10 @@ unordered_map
 -
 algorithm
 -
+cstdlib
+-
 device.h
 /Users/oscargao/Desktop/p2_6140_new/device.h
+random
+-
 

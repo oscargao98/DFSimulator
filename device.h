@@ -37,7 +37,6 @@ public:
 
     vector<string> fi1; // fault list at i1
     vector<string> fi2; // fault list at i2
-//    vector<string> fout; // fault list at output
 
     bool done = false;
 };
