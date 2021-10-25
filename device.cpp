@@ -152,3 +152,14 @@ vector<string> device::fault_intersection(vector<string> first_v, vector<string>
     std::set_intersection(first_v.begin(), first_v.end(), second_v.begin(), second_v.end(), back_inserter(output));
     return output;
 }
+
+void device::clear_device()
+{
+    this->i1v = 2;
+    this->i2v = 2;
+    this->ov = 2;
+    this->fi1.clear();
+    this->fi2.clear();
+    this->done = false;
+}
+

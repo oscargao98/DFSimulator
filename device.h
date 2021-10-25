@@ -25,6 +25,7 @@ public:
     static vector<string> fault_union(vector<string> first_v, vector<string> second_v);
     static vector<string> fault_difference(vector<string> first_v, vector<string> second_v);
     static vector<string> fault_intersection(vector<string> first_v, vector<string> second_v);
+    void clear_device();
 
     string type; // type of gate
     string i1; // input 1

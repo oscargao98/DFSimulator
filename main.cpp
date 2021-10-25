@@ -16,24 +16,29 @@ using namespace std;
 int main(int argc, char*argv[])
 {
     // unpack command line args
-    if (argc<1)
+    if (argc<4)
     {
-        cout << "Please follow command line guide line." << endl;
-        return 0;
+        throw invalid_argument("WRONG NUMBER OF COMMAND LINE ARGUMENTS!!");
     }
     string filename = argv[1];
     string arg2 = argv[2];
     if (strcmp(argv[2], "-input_option") != 0)
     {
-        cout << "Please follow command line guide line." << endl;
-        return 0;
+        throw invalid_argument("Please follow command line guide line.");
     }
     int input_option = atoi(argv[3]);
-
-    int random_option = 0;
-    if (strcmp(argv[4], "-true_random") == 0)
+    if (input_option<0 or input_option>1)
     {
-        random_option = 1;
+        throw invalid_argument("INVALID INPUT OPTION!!");
+    }
+    if (strcmp(argv[4], "-random_option") != 0)
+    {
+        throw invalid_argument("Please follow command line guide line.");
+    }
+    int random_option = atoi(argv[5]);
+    if (random_option<0 or random_option>1)
+    {
+        throw invalid_argument("INVALID RANDOM OPTION!!");
     }
 
     // read in the circuit file
@@ -98,21 +103,16 @@ int main(int argc, char*argv[])
         (comp[i][0]) == "AND" || (comp[i][0]) == "NAND") // keep record of circuit devices
         {
             device_list.emplace_back(device(comp[i]));
-//            device_list[i].printDevice(); // print out device's information
         }
         else
         {
             throw invalid_argument("ERROR!!! INVALID LINE IN CIRCUIT FILE!!");
         }
     }
-#ifdef DEBUG
-    for (auto const &pair: inputs) {
-        std::cout << "{" << pair.first << ": " << pair.second << "}";
-    }
-#endif
+
     size_t input_size = inputs.size();
     // if input_option is 1, ask the user to input test vector
-    if (input_option == 1)
+    if (input_option == 0)
     {
         unordered_map<string, vector<string>> all_faults; // map to hold all the detected faults
         unordered_map<string, int> netValues; // map to hold values of nets
@@ -235,7 +235,7 @@ int main(int argc, char*argv[])
             cin >> continue_code;
         } // end while loop
     }
-    else if (input_option == 2) // random number of 0 and 1 as input
+    else if (input_option == 1) // random number of 0 and 1 as input
     {
         int num_input = 0; // initialize number of simulated input
         double target_coverage = 0.0;
@@ -328,12 +328,7 @@ int main(int argc, char*argv[])
             // clear device, ready for next round
             for (int i=0; i<device_list.size(); i++)
             {
-                device_list[i].i1v = 2; // input 1
-                device_list[i].i2v = 2; // input 1
-                device_list[i].ov = 2; // input 1
-                device_list[i].fi1.clear(); // fault list at i1
-                device_list[i].fi2.clear(); // fault list at i1
-                device_list[i].done = false;
+                device_list[i].clear_device();
             }
 #ifdef DEBUG
             for (auto a_device: device_list)
@@ -348,7 +343,6 @@ int main(int argc, char*argv[])
             }
             cout << endl;
 #endif
-
             // add to final_fault_list
             for (auto const &a_output: outputs) {
                 for (auto &a_fault: all_faults[a_output]) {
